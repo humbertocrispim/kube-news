@@ -24,4 +24,3 @@ jobs:
           push: true
           tags: 
             humbertodocker/live-kube-news:v1
-            humbertodocker/live-kube-news:latest
