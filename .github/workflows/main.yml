@@ -19,4 +19,3 @@ jobs:
           tags: 
             fabricioveronez/live-kube-news:v1
             fabricioveronez/live-kube-news:latest
-      
