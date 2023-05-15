@@ -9,7 +9,12 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - uses: actions/checkout@v3.5.2 
+      - uses: actions/checkout@v3.5.2
+      - name: Autenticaçao docker hub
+        uses: docker/login-action@v2.1.0
+        with:
+          username: ${{secrets.DOCKERHUB_USER}}
+          password: ${{secrets.DOCKERHUB_PWD}}
       - name: Build and push Docker images
         uses: docker/build-push-action@v4.0.0
         with:
@@ -17,5 +22,5 @@ jobs:
           file: ./src/Dockerfile
           push: true
           tags: 
-            fabricioveronez/live-kube-news:v1
-            fabricioveronez/live-kube-news:latest
+            humbertodocker/live-kube-news:v1
+            humbertodocker/live-kube-news:latest
