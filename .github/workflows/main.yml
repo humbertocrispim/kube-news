@@ -19,7 +19,7 @@ jobs:
       - name: Build and push Docker images
         uses: docker/build-push-action@v4.0.0
         with:
-          contetext: ./src
+          context: ./src
           file: ./src/Dockerfile
           push: true
           tags: 
@@ -29,12 +29,16 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v3.5.2
+      - uses: actions/checkout@v3.5.2
 
-    - uses: alex-ac/github-action-ssh-docker-compose@master
-      name: Docker-Compose Remote Deployment
-      with:
-        ssh_host: 168.138.142.166
-        ssh_private_key: ${{secrets.SSH_PRIVATE_KEY}}
-        ssh_user: ${{secrets.SSH_USER}}
-        docker_compose_prefix: 168.138.142.166
+      - name: Deploy to Docker Host
+        uses: wshihadeh/docker-deployment-action@v1
+        with:
+          remote_docker_host: ubuntu@168.138.142.166
+          ssh_private_key: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
+          ssh_public_key: ${{ secrets.DOCKER_SSH_PUBLIC_KEY }}
+          deployment_mode: ./src/docker-compose
+          args: up -d
+          pre_deployment_command_args: 'bundle exec rake db:migrate'
+          docker_prune: 'true'
+          pull_images_first: 'true'
