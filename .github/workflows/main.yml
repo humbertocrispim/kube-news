@@ -23,4 +23,4 @@ jobs:
           file: ./src/Dockerfile
           push: true
           tags: 
-            humbertodocker/live-kube-news:{{github.run_number}}
+            humbertodocker/live-kube-news:${{github.run_number}}
