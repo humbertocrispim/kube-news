@@ -24,3 +24,17 @@ jobs:
           push: true
           tags: 
             humbertodocker/live-kube-news:${{github.run_number}}
+            
+  CD:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3.5.2
+
+    - uses: alex-ac/github-action-ssh-docker-compose@master
+      name: Docker-Compose Remote Deployment
+      with:
+        ssh_host: example.com
+        ssh_private_key: ${{ secrets.EXAMPLE_COM_SSH_PRIVATE_KEY }}
+        ssh_user: ${{ secrets.EXAMPLE_COM_SSH_USER }}
+        docker_compose_prefix: 168.138.142.166
