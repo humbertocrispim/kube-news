@@ -1,12 +1,12 @@
-version: "3" ## especifica a versão do docker-compose file
-
-services: ## Define um serviço
-  app: ## nome do serviço
-#    build: Dockerfile
-    command: npm start ## comando a executar
+version: '3.8'
+services:
+  app:
+    image: 'jc21/nginx-proxy-manager:latest'
+    restart: unless-stopped
     ports:
-      - "3000:3000" ## redirecionamento de porta quando chegar alguma requisição na porta 3000 chama o container na porta 3000
+      - '80:80'
+      - '81:81'
+      - '443:443'
     volumes:
-      - .:/usr/app ## monitoro a pasta atual . e envio as alterações para /usr/app
-
-#teste
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
