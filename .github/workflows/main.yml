@@ -31,14 +31,15 @@ jobs:
     steps:
       - uses: actions/checkout@v3.5.2
 
-      - name: Deploy to Docker Host
+      - name: Deploy to Docker swarm
         uses: wshihadeh/docker-deployment-action@v1
         with:
           remote_docker_host: ubuntu@168.138.142.166
           ssh_private_key: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
           ssh_public_key: ${{ secrets.DOCKER_SSH_PUBLIC_KEY }}
-          deployment_mode: docker-compose.yml
-          args: up -d
-          pre_deployment_command_args: 'bundle exec rake db:migrate'
-          docker_prune: 'true'
-          pull_images_first: 'true'
+          deployment_mode: docker-swarm
+          copy_stack_file: true
+          deploy_path: /root/my-deployment
+          stack_file_name: docker-compose.yaml
+          keep_files: 5
+          args: my_applicaion
