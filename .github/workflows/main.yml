@@ -10,6 +10,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3.5.2
+    
+    - name: Docker Login
+      uses: docker/login-action@v2.1.0
+      with:
+       registry: harbor.gavtech.com.br
+       username: humberto.crispim
+       password: Saxa211193@@
     - name: Build and push Docker images
       uses: docker/build-push-action@v4.0.0
       with:
