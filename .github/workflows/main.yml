@@ -1,4 +1,4 @@
-name: Deploy
+name: Push Docker Image  🐳🐳🐳
 
 on:
   push:
@@ -9,12 +9,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-
-    - uses: alex-ac/github-action-ssh-docker-compose@master
-      name: Docker-Compose Remote Deployment
+    - uses: actions/checkout@v3.5.2
+    - name: Build and push Docker images
+      uses: docker/build-push-action@v4.0.0
       with:
-        ssh_host: 168.138.142.166
-        ssh_private_key: ${{ secrets.EXAMPLE_COM_SSH_PRIVATE_KEY }}
-        ssh_user: ${{ secrets.EXAMPLE_COM_SSH_USER }}
-        docker_compose_prefix: my_apps
+        context: ./src
+        file: ./src/Dockerfile
+        push: true
+        tags: |
+          harbor.gavtech.com.br/gavtech/kube-news:v1
+        
