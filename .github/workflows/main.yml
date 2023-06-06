@@ -11,12 +11,11 @@ jobs:
     steps:
     - uses: actions/checkout@v3.5.2
     
-    - name: Docker Login
-      uses: docker/login-action@v2.1.0
+    - uses: docker/login-action@v1
       with:
-       registry: harbor.gavtech.com.br
-       username: humberto.crispim
-       password: Saxa211193@@
+        registry: harbor.example.com
+        username: ${{ secrets.HARBOR_USERNAME  }}
+        password: ${{ secrets.HARBOR_PASSWORD }}
     - name: Build and push Docker images
       uses: docker/build-push-action@v4.0.0
       with:
