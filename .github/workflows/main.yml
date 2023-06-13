@@ -17,7 +17,7 @@ jobs:
       run: wget -qO - https://ipinfo.io/ip
     
     - name: Login to Harbor Registry2
-      run: ping harbor.gavtech.com.br
+      run: curl harbor.gavtech.com.br
 #      run: echo "${{ secrets.HARBOR_PASSWORD }}" | docker login harbor.gavtech.com.br -u "${{ secrets.HARBOR_USERNAME }}" --password-stdin
     
     - name: Build and push Docker images
