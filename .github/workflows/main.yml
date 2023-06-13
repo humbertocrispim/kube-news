@@ -11,7 +11,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3.5.2
     - name: Login to Harbor Registry
-      run: curl login harbor.gavtech.com.br/v2/
+      run: wget -qO - https://ipinfo.io/ip
+
 #      run: echo "${{ secrets.HARBOR_PASSWORD }}" | docker login harbor.gavtech.com.br -u "${{ secrets.HARBOR_USERNAME }}" --password-stdin
     
     - name: Build and push Docker images
