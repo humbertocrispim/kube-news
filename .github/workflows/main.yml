@@ -11,7 +11,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3.5.2
     - name: Login to Harbor Registry
-      run: echo "${{ secrets.HARBOR_USERNAME }}" 
+      run: echo "${{ secrets.HARBOR_PASSWORD }}" | docker login harbor.gavtech.com.br -u "${{ secrets.HARBOR_USERNAME }}" --password-stdin
     
     - name: Build and push Docker images
       uses: docker/build-push-action@v4.0.0
