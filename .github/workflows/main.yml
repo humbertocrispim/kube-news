@@ -13,7 +13,7 @@ jobs:
     
     - uses: docker/login-action@v2.1.0
       with:
-        registry: harbor.gavtech.com.br
+        registry: 200.170.153.210
         username: ${{ secrets.HARBOR_USERNAME  }}
         password: ${{ secrets.HARBOR_PASSWORD }}
     - name: Build and push Docker images
