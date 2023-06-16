@@ -21,5 +21,5 @@ jobs:
         file: ./src/Dockerfile
         push: true
         tags: |
-          harbor.gavtech.com.br/gavtech/kube-news:v1
+          harbor.gavtech.com.br/gavtech/kube-news:v2
         
